@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="userLoginForm" type="com.atm.model.user.LoginForm"></form-bean>
+		<form-bean name="depositForm" type="com.atm.model.DepositForm"></form-bean>
+		<form-bean name="withdrawForm" type="com.atm.model.WithdrawForm"></form-bean>
+		<form-bean name="transferForm" type="com.atm.model.TransferForm"></form-bean>
+		<form-bean name="informUserForm" type="com.atm.model.InformUserForm"></form-bean>
+		<form-bean name="userChangePasswordForm" type="com.atm.model.user.ChangePasswordForm"></form-bean>
+		
+		<form-bean name="adminLoginForm" type="com.atm.model.admin.LoginForm"></form-bean>
+		<form-bean name="createUserForm" type="com.atm.model.admin.CreateUserForm"></form-bean>
+		<form-bean name="transReportForm" type="com.atm.model.admin.TransReportForm"></form-bean>
+		<form-bean name="transReportInputForm" type="com.atm.model.admin.TransReportInputForm"></form-bean>
+		<form-bean name="accountReportForm" type="com.atm.model.admin.AccountReportForm"></form-bean>
+		<form-bean name="verifyIDForm" type="com.atm.model.admin.VerifyIDForm"></form-bean>
+		<form-bean name="adminChangePasswordForm" type="com.atm.model.admin.ChangePasswordForm"></form-bean>
+	</form-beans>
+	
+	<global-forwards>
+		<forward name="user-mainpanel" path="/view/user/mainpanel.jsp" />
+		<forward name="user-input-deposit" path="/view/user/deposit.jsp" />
+		<forward name="user-input-withdraw" path="/view/user/withdraw.jsp" />
+		<forward name="user-input-transfer" path="/view/user/transfer.jsp" />
+		<forward name="user-change-password" path="/view/user/changepassword.jsp" />
+		
+		<forward name="admin-mainpanel" path="/view/admin/mainpanel.jsp" />
+		<forward name="admin-input-deposit" path="/view/admin/deposit.jsp" />
+		<forward name="admin-input-withdraw" path="/view/admin/withdraw.jsp" />
+		<forward name="admin-input-transfer" path="/view/admin/transfer.jsp" />
+		<forward name="create-user" path="/view/admin/createUser.jsp" />
+		<forward name="get-user-id" path="/view/admin/getuserid.jsp" />
+		<forward name="user-operations" path="/view/admin/userOperations.jsp" />
+		<forward name="trans-report-input" path="/view/admin/transreportinput.jsp" />
+		<forward name="admin-change-password" path="/view/admin/changepassword.jsp" />
+	</global-forwards>
+	
+	<action-mappings>
+		<action path="/user-login-page" forward="/view/user/login.jsp"/>
+			
+		<action path="/user-balance-enquiry" type="com.atm.action.user.BalanceEnquiryAction" name="balanceEnquiryForm">
+			<forward name="success" path="/view/user/balanceEnquiry.jsp"/>
+		</action>
+			
+		<action path="/user-export-excel" type="com.atm.action.user.ExportExcelAction">
+		</action>
+			
+		<action path="/user-deposit" type="com.atm.action.user.DepositAction" name="depositForm"
+		validate="true" input="/view/user/deposit.jsp" scope="request">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/user/deposit.jsp"/>
+		</action>
+			
+		<action path="/user-withdraw" type="com.atm.action.user.WithdrawAction" name="withdrawForm"
+		validate="true" input="/view/user/withdraw.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/user/withdraw.jsp"/>
+		</action>
+			
+		<action path="/user-transfer" type="com.atm.action.user.TransferAction" name="transferForm"
+		validate="true" input="/view/user/transfer.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/user/transfer.jsp"/>
+		</action>
+			
+		<action path="/user-login" type="com.atm.action.user.LoginAction" name="userLoginForm" 
+		validate="true" input="/view/user/login.jsp">
+			<forward name="success" path="/view/user/mainpanel.jsp"/>
+			<forward name="fail" path="/view/user/login.jsp"/>
+		</action>
+		
+		<action path="/user-change-password" type="com.atm.action.user.ChangePasswordAction" name="userChangePasswordForm" 
+		validate="true" input="/view/user/changepassword.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/user/changepassword.jsp"/>
+		</action>
+		
+		<action path="/user-logout" type="com.atm.action.user.LogoutAction">
+			<forward name="success" path="/view/user/login.jsp"/>
+		</action>
+			
+		<action path="/user-balance-enquiry-filter" type="com.atm.action.user.BalanceEnquiryFilterAction">
+			<forward name="success" path="/view/user/balanceEnquiry.jsp"/>
+		</action>
+		
+		<!-- ADMIN -->
+		
+		<action path="/admin-login-page" forward="/view/admin/login.jsp"/>
+		
+		<action path="/admin-login" type="com.atm.action.admin.LoginAction" name="adminLoginForm"
+		validate="true" input="/view/admin/login.jsp">
+			<forward name="success" path="/view/admin/mainpanel.jsp"/>
+			<forward name="fail" path="/view/admin/login.jsp"/>
+		</action>
+			
+		<action path="/create-user" type="com.atm.action.admin.CreateUserAction" name="createUserForm"
+		validate="true" input="/view/admin/createUser.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/admin/createUser.jsp"/>
+		</action>
+			
+		<action path="/verify-id" type="com.atm.action.admin.VerifyIDAction" name="verifyIDForm"
+		validate="true" input="/view/admin/getuserid.jsp">
+			<forward name="success" path="/view/admin/userOperations.jsp"/>
+			<forward name="fail" path="/view/admin/getuserid.jsp"/>
+		</action>
+			
+		<action path="/trans-report" type="com.atm.action.admin.TransReportAction" name="transReportInputForm"
+		validate="true" input="/view/admin/transreportinput.jsp">
+			<forward name="success" path="/view/admin/transreport.jsp"/>
+			<forward name="fail" path="/view/admin/transreportinput.jsp"/>
+		</action>
+			
+		<action path="/account-report" type="com.atm.action.admin.AccountReportAction">
+			<forward name="success" path="/view/admin/accountreport.jsp"/>
+		</action>
+			
+		<action path="/toggle-active" type="com.atm.action.admin.ToggleActiveAction">
+			<forward name="success" path="/view/admin/userOperations.jsp"/>
+		</action>
+			
+		<action path="/admin-balance-enquiry" type="com.atm.action.admin.BalanceEnquiryAction" name="balanceEnquiryForm">
+			<forward name="success" path="/view/admin/balanceEnquiry.jsp"/>
+		</action>
+			
+		<action path="/admin-export-excel" type="com.atm.action.admin.ExportExcelAction">
+		</action>
+			
+		<action path="/admin-deposit" type="com.atm.action.admin.DepositAction" name="depositForm"
+		validate="true" input="/view/admin/deposit.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/admin/deposit.jsp"/>
+		</action>
+			
+		<action path="/admin-withdraw" type="com.atm.action.admin.WithdrawAction" name="withdrawForm"
+		validate="true" input="/view/admin/withdraw.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/admin/withdraw.jsp"/>
+		</action>
+			
+		<action path="/admin-transfer" type="com.atm.action.admin.TransferAction" name="transferForm"
+		validate="true" input="/view/admin/transfer.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/admin/transfer.jsp"/>
+		</action>
+		
+		<action path="/admin-change-password" type="com.atm.action.admin.ChangePasswordAction" name="adminChangePasswordForm" 
+		validate="true" input="/view/admin/changepassword.jsp">
+			<forward name="success" path="/view/informUser.jsp"/>
+			<forward name="fail" path="/view/admin/changepassword.jsp"/>
+		</action>
+		
+		<action path="/admin-logout" type="com.atm.action.admin.LogoutAction">
+			<forward name="success" path="/view/admin/login.jsp"/>
+		</action>
+		
+		<!-- Misc -->
+		<action path="/script" type="com.atm.action.ScriptAction">
+			<forward name="success" path="/view/admin/login.jsp"/>
+		</action>
+		
+		<action path="/get-random-id" type="com.atm.action.GetRandomIDAction"></action>
+		<action path="/check-id-exists" type="com.atm.action.CheckIDExistsAction"></action>
+			
+		<action path="/verify-id" type="com.atm.action.admin.VerifyIDAction" name="verifyIDForm"
+		validate="true" input="/view/admin/getuserid.jsp">
+			<forward name="success" path="/view/admin/userOperations.jsp"/>
+			<forward name="fail" path="/view/admin/getuserid.jsp"/>
+		</action>
+			
+		<action path="/admin-balance-enquiry-filter" type="com.atm.action.admin.BalanceEnquiryFilterAction">
+			<forward name="success" path="/view/admin/balanceEnquiry.jsp"/>
+		</action>
+	</action-mappings>
+	
+	<message-resources parameter="messages"></message-resources>
+</struts-config>

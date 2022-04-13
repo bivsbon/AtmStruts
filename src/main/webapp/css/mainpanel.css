@@ -1,0 +1,47 @@
+.actionBtn {
+	background-color: #04AA6D;
+ 	color: white;
+ 	padding: 14px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+  	width: 100%;
+}
+
+.topBtn {
+	width: auto;
+	background-color: #04AA6D;
+ 	color: white;
+ 	padding: 7px 10px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+}
+
+#btnGroup1 {
+	text-align: right;
+	border-bottom: 5px solid #777;
+}
+
+label {
+	width: 550px;
+	text-align: center;
+	font-size: 30px;
+	display: block;
+}
+
+#mainPanel {
+	width: 30%;
+    height: 50%;
+    margin: auto;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}

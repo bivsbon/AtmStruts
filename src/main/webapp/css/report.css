@@ -1,0 +1,50 @@
+table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+	
+td, th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+body {
+	background-color: #decb60;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+}
+
+.topBtn {
+	width: auto;
+	background-color: #04AA6D;
+ 	color: white;
+ 	padding: 7px 10px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+}
+
+#btnGroup1 {
+	text-align: right;
+	border-bottom: 5px solid #777;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
